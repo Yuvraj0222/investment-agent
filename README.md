@@ -285,15 +285,9 @@ Sources: [nvidia.com, seekingalpha.com, techcrunch.com, ...]
 
 ## LLM Chat Transcript (BONUS)
 
-This project was built using Replit Agent (powered by Anthropic's Claude). The entire development session — from initial architecture design through debugging LangChain package exports, fixing esbuild bundling of LangChain packages, and iterating on the agent prompt format — was conducted as a continuous AI-assisted build session.
+As mandated by the assignment to provide insight into the thought process and approach, the complete LLM chat session transcript/log has been documented in a separate file. 
 
-Key architectural decisions made during the LLM session:
-- **LangGraph over raw LangChain**: The agent recommended `createReactAgent` from LangGraph for its cleaner ReAct loop management
-- **Custom Tavily tool**: When `@langchain/community/tools/tavily_search` failed due to package export issues, the agent pivoted to a direct REST API implementation
-- **SSE over polling**: Agent recommended SSE for a better UX than polling `/research/:id` every second
-- **esbuild externalization**: LangChain's complex subpath exports required all `@langchain/*` packages to be externalized in the esbuild config
-
-The complete transcript of this build session represents the LLM-human collaboration that produced this codebase.
+Please see the [LLM_CHAT_TRANSCRIPT.md](./LLM_CHAT_TRANSCRIPT.md) file included in the root of this repository for the full transcript of the AI collaboration session.
 
 ---
 
