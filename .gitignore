@@ -38,3 +38,8 @@ replit.nix
 # Temp
 *.tmp
 .cache/
+
+# Test/scratch scripts
+search-js.mjs
+search-js-2.mjs
+test-site.mjs

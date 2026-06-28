@@ -4,7 +4,7 @@ services:
     runtime: node
     region: ohio
     plan: free
-    buildCommand: npm install -g pnpm@9 && pnpm install --no-frozen-lockfile && pnpm --filter @workspace/investment-agent run build && pnpm --filter @workspace/api-server run build
+    buildCommand: bash render-build.sh
     startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
     healthCheckPath: /api/health
     envVars:
