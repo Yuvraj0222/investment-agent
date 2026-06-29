@@ -37,7 +37,7 @@ function ScoreBar({ label, value, color }: { label: string; value: number; color
     <div className="space-y-1">
       <div className="flex justify-between text-xs font-mono">
         <span className="text-muted-foreground uppercase tracking-wide">{label}</span>
-        <span className="font-bold text-white">{value}</span>
+        <span className="font-bold text-foreground">{value}</span>
       </div>
       <div className="h-2 bg-secondary rounded-full overflow-hidden">
         <div
@@ -54,7 +54,7 @@ function MetricCell({ label, value }: { label: string; value?: string }) {
   return (
     <div className="flex flex-col gap-0.5 p-3 rounded-lg bg-secondary/30 border border-border/30">
       <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{label}</span>
-      <span className={`text-sm font-bold font-mono ${isNA ? "text-muted-foreground" : "text-white"}`}>
+      <span className={`text-sm font-bold font-mono ${isNA ? "text-muted-foreground" : "text-foreground"}`}>
         {isNA ? "—" : value}
       </span>
     </div>
@@ -141,7 +141,7 @@ export default function ResearchDetail() {
       {/* Sticky top nav */}
       <div className="border-b border-border/40 bg-background/90 backdrop-blur sticky top-0 z-10">
         <div className="container max-w-5xl px-4 md:px-8 h-12 flex items-center">
-          <Link href="/" className="inline-flex items-center text-xs font-mono text-muted-foreground hover:text-white transition-colors gap-1.5">
+          <Link href="/" className="inline-flex items-center text-xs font-mono text-muted-foreground hover:text-foreground transition-colors gap-1.5">
             <ArrowLeft className="h-3 w-3" /> BACK TO MATRIX
           </Link>
         </div>
@@ -155,11 +155,11 @@ export default function ResearchDetail() {
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               <div className="space-y-3 flex-1 min-w-0">
                 <p className="text-[10px] font-mono tracking-widest text-muted-foreground">RESEARCH TARGET</p>
-                <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-none">{research.company}</h1>
+                <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground leading-none">{research.company}</h1>
                 {companyInfo && (
                   <div className="flex flex-wrap gap-2 pt-1">
                     {companyInfo.ticker && companyInfo.ticker !== "N/A" && (
-                      <span className="px-2 py-0.5 rounded bg-white/10 text-xs font-mono font-bold text-white">{companyInfo.ticker}</span>
+                      <span className="px-2 py-0.5 rounded bg-white/10 text-xs font-mono font-bold text-foreground">{companyInfo.ticker}</span>
                     )}
                     {companyInfo.exchange && companyInfo.exchange !== "N/A" && (
                       <span className="px-2 py-0.5 rounded bg-white/5 border border-border/40 text-xs font-mono text-muted-foreground">{companyInfo.exchange}</span>
@@ -212,7 +212,7 @@ export default function ResearchDetail() {
         {!isCompleted && !isFailed && (
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-4xl font-black tracking-tight text-white">{research.company}</h1>
+              <h1 className="text-4xl font-black tracking-tight text-foreground">{research.company}</h1>
               <Badge variant="outline" className="animate-pulse bg-primary/10 text-primary border-primary/20 font-mono">PROCESSING</Badge>
             </div>
             <div className="text-xs font-mono text-muted-foreground flex gap-4">
@@ -226,7 +226,7 @@ export default function ResearchDetail() {
         {isUnknown && (
           <>
             <div className="space-y-2">
-              <h1 className="text-4xl font-black tracking-tight text-white">{research.company}</h1>
+              <h1 className="text-4xl font-black tracking-tight text-foreground">{research.company}</h1>
               <div className="text-xs font-mono text-muted-foreground flex gap-4">
                 <span className="flex items-center gap-1"><Hash className="h-3 w-3" />{research.id.toString().padStart(4, "0")}</span>
               </div>
@@ -236,12 +236,12 @@ export default function ResearchDetail() {
                 <AlertCircle className="h-8 w-8 text-yellow-400 shrink-0 mt-0.5" />
                 <div className="space-y-3">
                   <h3 className="font-bold font-mono text-yellow-400 text-lg">ENTITY NOT RECOGNISED</h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">{research.summary}</p>
+                  <p className="text-sm text-foreground/80 leading-relaxed">{research.summary}</p>
                   <div className="border-t border-yellow-500/20 pt-3">
                     <p className="text-xs font-mono text-muted-foreground mb-2">TRY SEARCHING FOR:</p>
                     <div className="flex flex-wrap gap-2">
                       {["Apple", "Tesla", "Infosys", "AAPL", "SpaceX", "Reliance Industries", "MTAR"].map((ex) => (
-                        <span key={ex} className="px-2 py-0.5 rounded border border-border/50 text-xs font-mono text-gray-400">{ex}</span>
+                        <span key={ex} className="px-2 py-0.5 rounded border border-border/50 text-xs font-mono text-muted-foreground">{ex}</span>
                       ))}
                     </div>
                   </div>
@@ -280,7 +280,7 @@ export default function ResearchDetail() {
                   {steps.map((step, idx) => (
                     <div key={idx} className="flex gap-3 animate-in slide-in-from-bottom-2">
                       <span className="text-primary/50 shrink-0">&gt;</span>
-                      <span className="text-gray-300">{step}</span>
+                      <span className="text-foreground/80">{step}</span>
                     </div>
                   ))}
                   {isStreaming && (
@@ -302,7 +302,7 @@ export default function ResearchDetail() {
                   const done = idx < steps.length;
                   const active = idx === steps.length;
                   return (
-                    <div key={label} className={`flex items-center gap-3 text-sm font-mono transition-colors ${done ? "text-invest" : active ? "text-white animate-pulse" : "text-muted-foreground"}`}>
+                    <div key={label} className={`flex items-center gap-3 text-sm font-mono transition-colors ${done ? "text-invest" : active ? "text-foreground animate-pulse" : "text-muted-foreground"}`}>
                       {done ? <CheckCircle2 className="h-4 w-4 shrink-0" /> : <Circle className="h-4 w-4 shrink-0 opacity-40" />}
                       <span>{label}</span>
                     </div>
@@ -354,7 +354,7 @@ export default function ResearchDetail() {
                     <div className="flex flex-wrap items-end gap-4 pb-4 border-b border-border/40">
                       <div>
                         <p className="text-[10px] font-mono text-muted-foreground mb-1">CURRENT PRICE</p>
-                        <p className="text-4xl font-black font-mono text-white">{stockData.price}</p>
+                        <p className="text-4xl font-black font-mono text-foreground">{stockData.price}</p>
                       </div>
                       {stockData.changePercent && stockData.changePercent !== "N/A" && (
                         <div className={`flex items-center gap-1 text-lg font-bold font-mono pb-1 ${stockData.changePercent.startsWith("+") ? "text-invest" : "text-pass"}`}>
@@ -390,7 +390,7 @@ export default function ResearchDetail() {
                 <CardTitle className="text-xs font-mono text-muted-foreground tracking-widest">EXECUTIVE SUMMARY</CardTitle>
               </CardHeader>
               <CardContent className="pt-5">
-                <p className="text-base md:text-lg leading-relaxed text-gray-100 font-light">{research.summary}</p>
+                <p className="text-base md:text-lg leading-relaxed text-foreground/90 font-light">{research.summary}</p>
               </CardContent>
             </Card>
 
@@ -451,7 +451,7 @@ export default function ResearchDetail() {
                           <div className="mt-1 h-5 w-5 rounded-full bg-invest/20 flex items-center justify-center shrink-0">
                             <TrendingUp className="h-3 w-3 text-invest" />
                           </div>
-                          <p className="text-sm text-gray-300 leading-relaxed">{point}</p>
+                          <p className="text-sm text-foreground/80 leading-relaxed">{point}</p>
                         </div>
                       ))}
                     </CardContent>
@@ -470,7 +470,7 @@ export default function ResearchDetail() {
                           <div className="mt-1 h-5 w-5 rounded-full bg-pass/20 flex items-center justify-center shrink-0">
                             <TrendingDown className="h-3 w-3 text-pass" />
                           </div>
-                          <p className="text-sm text-gray-300 leading-relaxed">{point}</p>
+                          <p className="text-sm text-foreground/80 leading-relaxed">{point}</p>
                         </div>
                       ))}
                     </CardContent>
@@ -498,11 +498,11 @@ export default function ResearchDetail() {
                         {item.sentiment === "positive" ? "🟢" : item.sentiment === "negative" ? "🔴" : "⚪"}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-200 leading-snug">{item.headline}</p>
+                        <p className="text-sm text-foreground/80 leading-snug">{item.headline}</p>
                         <p className="text-[10px] font-mono text-muted-foreground mt-1 uppercase">{item.sentiment}</p>
                       </div>
                       {item.url && item.url !== "" && (
-                        <a href={item.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-white transition-colors shrink-0 mt-0.5">
+                        <a href={item.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors shrink-0 mt-0.5">
                           <ExternalLink className="h-3.5 w-3.5" />
                         </a>
                       )}
@@ -529,7 +529,7 @@ export default function ResearchDetail() {
                       { label: "Market Sentiment", key: "marketSentiment" },
                     ].map(({ label, key }) => (
                       <div key={key} className="flex items-center justify-between p-3 rounded-lg bg-secondary/30 border border-border/30">
-                        <span className="text-sm text-gray-300">{label}</span>
+                        <span className="text-sm text-foreground/80">{label}</span>
                         <Stars count={(confidenceBreakdown as Record<string, number>)[key] ?? 0} />
                       </div>
                     ))}
@@ -556,7 +556,7 @@ export default function ResearchDetail() {
                           className="group flex items-center justify-between p-3 rounded-lg border border-border/40 bg-secondary/20 hover:bg-secondary/50 hover:border-border/80 transition-all">
                           <div className="flex items-center gap-2 min-w-0">
                             <ChevronRight className="h-3.5 w-3.5 text-primary/50 shrink-0" />
-                            <span className="text-sm font-mono text-muted-foreground group-hover:text-white truncate transition-colors">{domain}</span>
+                            <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground truncate transition-colors">{domain}</span>
                           </div>
                           <ExternalLink className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
                         </a>
@@ -576,7 +576,7 @@ export default function ResearchDetail() {
                 <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-muted-foreground">
                   {["Your Query", "LangGraph Agent", "Tavily Web Search", "GPT-4o Reasoning", "Score Weighting", "Investment Verdict"].map((step, idx, arr) => (
                     <span key={step} className="flex items-center gap-2">
-                      <span className="px-2 py-1 rounded bg-secondary/60 border border-border/40 text-gray-300">{step}</span>
+                      <span className="px-2 py-1 rounded bg-secondary/60 border border-border/40 text-foreground/80">{step}</span>
                       {idx < arr.length - 1 && <span className="text-primary/50">→</span>}
                     </span>
                   ))}
@@ -591,7 +591,7 @@ export default function ResearchDetail() {
             <div className={`rounded-xl border p-5 flex flex-col sm:flex-row sm:items-center gap-4 ${isInvest ? "border-invest/30 bg-invest/5" : "border-pass/30 bg-pass/5"}`}>
               <div className="flex-1">
                 <p className="text-xs font-mono text-muted-foreground tracking-wider mb-1">ANALYST NOTE</p>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-foreground/80">
                   {isInvest ? "Positive investment signals detected. Always verify with additional research before making decisions." : "Caution signals detected. Consider the bear case carefully before investing."}
                 </p>
               </div>
