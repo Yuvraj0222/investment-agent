@@ -1,4 +1,4 @@
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { ChatOpenAI } from "@langchain/openai";
 import { tool } from "@langchain/core/tools";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 import { HumanMessage } from "@langchain/core/messages";
@@ -84,10 +84,10 @@ async function validateCompany(
       .slice(0, 1200);
   }
 
-  const validator = new ChatGoogleGenerativeAI({
-    model: "gemini-2.0-flash",
+  const validator = new ChatOpenAI({
+    modelName: "gpt-4o-mini",
     temperature: 0,
-    apiKey: process.env.GEMINI_API_KEY!,
+    openAIApiKey: process.env.OPENAI_API_KEY!,
   });
 
   const judgment = await validator.invoke([
@@ -115,7 +115,7 @@ export async function runInvestmentResearch(
   company: string,
   onStep: (step: string) => void
 ): Promise<ResearchResult> {
-  if (!process.env.GEMINI_API_KEY) throw new Error("GEMINI_API_KEY is not set");
+  if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not set");
   if (!process.env.TAVILY_API_KEY) throw new Error("TAVILY_API_KEY is not set");
 
   // ── Step 0: Validate ────────────────────────────────────────────────────
@@ -141,10 +141,10 @@ export async function runInvestmentResearch(
   // ── Step 1–5: Full research agent ────────────────────────────────────────
   onStep(`Confirmed. Initiating deep-dive research on ${company}...`);
 
-  const model = new ChatGoogleGenerativeAI({
-    model: "gemini-1.5-pro",
+  const model = new ChatOpenAI({
+    modelName: "gpt-4o",
     temperature: 0,
-    apiKey: process.env.GEMINI_API_KEY,
+    openAIApiKey: process.env.OPENAI_API_KEY,
   });
 
   const agent = createReactAgent({
