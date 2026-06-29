@@ -37,7 +37,7 @@ export default function Home() {
       {/* Hero / Search Section */}
       <section className="flex flex-col items-center justify-center space-y-6 pt-12 pb-8">
         <div className="space-y-2 text-center">
-          <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
+          <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-black">
             Target Acquisition <span className="text-muted-foreground">Matrix</span>
           </h1>
           <p className="text-muted-foreground font-mono text-sm max-w-2xl mx-auto">
@@ -106,7 +106,7 @@ export default function Home() {
       {/* Recent History */}
       <section className="space-y-4">
         <div className="flex items-center justify-between border-b border-border pb-2">
-          <h2 className="text-xl font-medium text-foreground tracking-tight">Recent Intelligence</h2>
+          <h2 className="text-xl font-medium text-black tracking-tight">Recent Intelligence</h2>
           <span className="text-xs font-mono text-muted-foreground">LIVE FEED</span>
         </div>
 
@@ -129,7 +129,7 @@ export default function Home() {
               >
                 <div className="flex items-center gap-4">
                   <div className="flex-1 space-y-1">
-                    <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="font-semibold text-lg text-black group-hover:text-primary transition-colors">
                       {job.company}
                     </h3>
                     <div className="flex items-center gap-3 text-xs font-mono text-muted-foreground">
@@ -165,7 +165,7 @@ export default function Home() {
                       {job.status}
                     </Badge>
                   )}
-                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-black transition-colors" />
                 </div>
               </Link>
             ))}
@@ -190,7 +190,7 @@ function StatCard({ title, value, icon, loading }: { title: string, value: strin
         {loading ? (
           <div className="h-8 w-16 bg-muted animate-pulse rounded" />
         ) : (
-          <div className="text-2xl md:text-3xl font-bold font-mono text-foreground tracking-tight">{value}</div>
+          <div className="text-2xl md:text-3xl font-bold font-mono text-black tracking-tight">{value}</div>
         )}
       </CardContent>
     </Card>
